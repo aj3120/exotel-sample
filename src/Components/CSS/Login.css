@@ -1,0 +1,51 @@
+.login-page{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.login-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:50%;
+}
+.login-active{
+    background-color: green;
+}
+.login-inactive{
+    background-color: gray;
+}
+.username-active,.password-active{
+    -webkit-box-shadow: 0px 0px 14px -1px rgba(7,143,0,1);
+    -moz-box-shadow: 0px 0px 14px -1px rgba(7,143,0,1);
+    box-shadow: 0px 0px 14px -1px rgba(7,143,0,1);
+}
+.username-inactive,.password-inactive{
+    -webkit-box-shadow: 0px 0px 9px -1px rgba(55,56,55,1);
+    -moz-box-shadow: 0px 0px 9px -1px rgba(55,56,55,1);
+    box-shadow: 0px 0px 9px -1px rgba(55,56,55,1);
+
+}
+#username,#password{
+    outline: none;
+    border:none;
+}
+.username-box,.password-box{
+    border:1px solid gray;
+    height: 3em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.login-button{
+    color:white;
+    height:3rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:1.1em;
+    cursor: pointer;
+
+}
