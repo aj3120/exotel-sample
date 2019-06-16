@@ -2,3 +2,20 @@
     border: none;
     outline: none;
 }
+.column-heading{
+    position:absolute;
+    border: 1px solid red; 
+    background-color: white;
+}
+#heading{
+    float:left;
+}
+.column-icon{
+    float:right;
+}
+.hide-menu{
+    display:none; 
+}
+.visible-menu{
+    display: block;
+}

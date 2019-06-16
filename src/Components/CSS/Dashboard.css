@@ -1,8 +1,12 @@
 .card{
     margin-top:1.5em;
     cursor: pointer;
+    padding:1em;
 }
 .dashboard{
     width:80%;
-    margin-left:1em;
+    margin:auto;
+}
+.card-deck{
+    
 }

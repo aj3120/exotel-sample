@@ -6,9 +6,9 @@ import './App.css';
 import { connect } from 'react-redux';
 import { Route, Switch,Redirect } from 'react-router';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser,faLock)
+library.add(faUser,faLock,faCaretDown)
 const mapStateToProps = (state) => {
   return ({
     loggedIn: state.loginReducer.loggedInStatus

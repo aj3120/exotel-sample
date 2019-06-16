@@ -63,7 +63,7 @@ class Login extends Component {
                 <div className="login-box col-sm-10 col-md-8 col-lg-6">
                     <div className={`username-box ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} >
                         <span className="col-1"><FontAwesomeIcon icon="user" /></span>
-                        <input className="col-11" id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} alue={this.state.username} placeholder="Enter username" ></input>
+                        <input className="col-11" id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>
                     </div>
                     <div className={`password-box ${this.state.password_field_selected? 'password-active' : 'password-inactive'}`} >
                     <span className="col-1"><FontAwesomeIcon icon="lock" /></span>
