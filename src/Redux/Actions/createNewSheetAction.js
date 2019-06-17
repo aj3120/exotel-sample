@@ -1,8 +1,8 @@
 import {ActionTypes} from '../ActionTypes'
-export const getUserDetailsAction=()=>{
+export const createNewSheetAction=()=>{
     return(
         {
-            type:ActionTypes.GET_USERS,
+            type:ActionTypes.CREATE_SHEET,
         }
     );
 }

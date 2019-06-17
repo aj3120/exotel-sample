@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
+import {createNewSheetAction} from '../../Redux/Actions/createNewSheetAction'
 import { connect } from "react-redux";
 import "../CSS/Dashboard.css";
 import { CardDeck,Row } from 'reactstrap';
@@ -12,10 +13,14 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        action: bindActionCreators({}, dispatch)
+        action: bindActionCreators({createNewSheetAction}, dispatch)
     };
 };
 class Content extends Component {
+
+    createSheet=()=>{
+        this.props.action.createNewSheetAction()
+    }
 
     render() {
         return (
@@ -29,6 +34,7 @@ class Content extends Component {
                     }
                     </Row> 
                 </CardDeck>
+                <button onClick={this.createSheet}>Add</button>
             </div>
         )
     }

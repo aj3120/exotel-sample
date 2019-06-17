@@ -8,7 +8,11 @@ export default function(state=initial_state,action){
         case ActionTypes.LOGIN:
             return({...state,login_initiate:true})
         case ActionTypes.LOGIN_SUCCESS:
-            return({...state,loggedInStatus:true})    
+            return({...state,loggedInStatus:true})  
+        case ActionTypes.SIGNUP:
+            return {...state,signup_initiate:true}
+        case ActionTypes.SIGNUP_SUCCESS:
+            return {...state,signup_success:true}          
         default:
             return state    
     }

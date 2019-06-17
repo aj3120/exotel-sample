@@ -16,6 +16,24 @@
 .login-inactive{
     background-color: gray;
 }
+.signup-page{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.signup-box{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:70%;
+}
+.signup-active{
+    background-color: green;
+}
+.signup-inactive{
+    background-color: gray;
+}
 .username-active,.password-active{
     border:1px solid green
 }

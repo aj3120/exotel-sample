@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {loginAction} from '../../Redux/Actions/loginAction';
+import {signupAction} from '../../Redux/Actions/signupAction';
 import '../CSS/Login.css'
 const mapStateToProps = state => {
     return (
@@ -13,10 +12,10 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        action: bindActionCreators({ loginAction }, dispatch)
+        action: bindActionCreators({ signupAction }, dispatch)
     };
 };
-class Login extends Component {
+class Signup extends Component {
     constructor(props){
         super(props)
         this.state={
@@ -28,9 +27,9 @@ class Login extends Component {
         }
     }
 
-    loginAction=()=>{
+    signupAction=()=>{
         if(this.state.form_filled){
-            this.props.action.loginAction({username:this.state.username,password:this.state.password})
+            this.props.action.signupAction({username:this.state.username,password:this.state.password})
         }
     }
 
@@ -55,8 +54,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login-page ">
-                <div className="login-box col-sm-10 col-md-8 col-lg-6">
+            <div className="signup-page ">
+                <div className="signup-box col-sm-10 col-md-8 col-lg-6">
                     <div className={`username-box ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} >
                         <span className="col-1"><FontAwesomeIcon icon="user" /></span>
                         <input className="col-11" id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>
@@ -65,15 +64,12 @@ class Login extends Component {
                     <span className="col-1"><FontAwesomeIcon icon="lock" /></span>
                         <input className="col-11" id="password" type="password" onChange={this.onFieldChange} onClick={this.onPasswordFieldSelection} value={this.state.password} placeholder="Enter password" ></input>
                     </div>
-                    <div className={`login-button ${this.state.form_filled? 'login-active' : 'login-inactive'}`} onClick={this.loginAction}>
-                       Login 
-                    </div>
-                    <div className="sign-up">
-                        <Link to="/signup">Sign Up</Link>
+                    <div className={`signup-button ${this.state.form_filled? 'signup-active' : 'signup-inactive'}`} onClick={this.signupAction}>
+                       Sign Up 
                     </div>
                 </div>
             </div>
         )
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

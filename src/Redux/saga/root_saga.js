@@ -1,9 +1,12 @@
 import {all } from 'redux-saga/effects';
-import {sagaLogin} from './saga_login';
+import {sagaLogin,sagaSignup} from './saga_login';
 import {sagaGetUsers} from './saga_getUsers';
+import {sagaSheet} from './saga_sheets'
 export function *watchAll() {
   yield all([
     sagaLogin(),
-    sagaGetUsers()
+    sagaGetUsers(),
+    sagaSignup(),
+    sagaSheet()
   ]);
 }

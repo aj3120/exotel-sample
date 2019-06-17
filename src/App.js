@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Login from './Components/JS/LoginComponent';
 import Dashboard from './Components/JS/DashboardComponent';
-import SpreadSheet from './Components/JS/SpreadSheetComponent'
+import SpreadSheet from './Components/JS/SpreadSheetComponent';
+import Signup from './Components/JS/SignupComponent';
 import './App.css';
 import { connect } from 'react-redux';
 import { Route, Switch,Redirect } from 'react-router';
@@ -26,6 +27,7 @@ class App extends Component {
             (<Login />)
           )} />
           <Route path="/spreadsheet/:id" component={SpreadSheet}/>
+          <Route path="/signup" component={Signup}/>
         </Switch>
       </div>
     );

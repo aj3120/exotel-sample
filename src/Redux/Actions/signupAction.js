@@ -1,8 +1,8 @@
 import {ActionTypes} from '../ActionTypes'
-export const loginAction=(data)=>{
+export const signupAction=(data)=>{
     return(
         {
-            type:ActionTypes.LOGIN,
+            type:ActionTypes.SIGNUP,
             payload:data
         }
     );
