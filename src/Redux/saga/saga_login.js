@@ -18,9 +18,24 @@ export function* sagaLogin(){
     yield takeLatest(ActionTypes.LOGIN,loginProcess)
 }
 
+export  function* logoutProcess(data){
+  let contents=yield call(()=>axios.get(`http://poocha.herokuapp.com/logout`))
+  if(contents.data.status==="true"){
+    yield put({ type: ActionTypes.LOGOUT_SUCCESS})
+  }
+   else
+    yield put({ type: ActionTypes.LOGOUT_FAILED})
+
+}
+
+export function* sagaLogout(){
+  yield takeLatest(ActionTypes.LOGOUT,logoutProcess)
+}
+
+
 export  function* signupProcess(data){
-  let contents=yield call(()=>axios.post(`http://poocha.herokuapp.com/users/login`,data.payload))
-  if(contents.status===true)
+  let contents=yield call(()=>axios.post(`http://poocha.herokuapp.com/users/register`,data.payload))
+  if(contents.data.status===true)
     yield put({ type: ActionTypes.SIGNUP_SUCCESS, payload: contents.data})
   else
     yield put({ type: ActionTypes.SIGNUP_FAILED})

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {loginAction} from '../../Redux/Actions/loginAction';
 import '../CSS/Login.css'
 const mapStateToProps = state => {
     return (
         {
+            login_loader:state.loginReducer.login_loader,
+            login_error:state.loginReducer.login_error
         }
     )
 }
@@ -24,7 +25,8 @@ class Login extends Component {
             username:'',
             password:'',
             username_field_selected:false,
-            password_field_selected:false
+            password_field_selected:false,
+            error_show:false
         }
     }
 
@@ -32,16 +34,22 @@ class Login extends Component {
         if(this.state.form_filled){
             this.props.action.loginAction({username:this.state.username,password:this.state.password})
         }
+        else{
+            this.setState({error_show:true})
+        }
     }
 
     formValidation=()=>{
-        if(this.state.username.length>4 && this.state.password.length>4){
+        if(this.state.username.length>=4 && this.state.password.length>=4){
             return true
         }
-        return false
+        else{
+            return false
+        }
+        
     }
 
-    onFieldChange=(event)=>{     
+    onFieldChange=(event)=>{
         this.setState({[event.target.id]:event.target.value,form_filled:this.formValidation()})
     }
     
@@ -62,6 +70,8 @@ class Login extends Component {
                         <img src="/assets/login.jpg" alt="timeline-image"/>
                     </div>
                     <div className="footer-login">
+                        <div className={`error-message ${this.state.error_show?'':'error-message-hide'}`}>Please enter username and password with atleast 4 letters </div>
+                        <div className={`error-message ${this.props.login_error?'':'error-message-hide'}`}>Invalid username or password</div>
                         <div className="username-box" >
                             <label className="col-3">Username</label>
                             <input className={`col-8 ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>
@@ -80,6 +90,7 @@ class Login extends Component {
                     </div>
                    
                 </div>
+                <div className={`login-loader ${this.props.login_loader? '' : 'loader-hide'}`}><img src="/assets/loader.gif" alt="loader"/></div>
             </div>
         )
     }

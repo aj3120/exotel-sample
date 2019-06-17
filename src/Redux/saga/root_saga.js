@@ -1,5 +1,5 @@
 import {all } from 'redux-saga/effects';
-import {sagaLogin,sagaSignup} from './saga_login';
+import {sagaLogin,sagaSignup,sagaLogout} from './saga_login';
 import {sagaGetUsers} from './saga_getUsers';
 import {sagaSheet} from './saga_sheets'
 export function *watchAll() {
@@ -7,6 +7,7 @@ export function *watchAll() {
     sagaLogin(),
     sagaGetUsers(),
     sagaSignup(),
-    sagaSheet()
+    sagaSheet(),
+    sagaLogout()
   ]);
 }

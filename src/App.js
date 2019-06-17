@@ -12,7 +12,8 @@ import { faUser, faLock, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 library.add(faUser,faLock,faCaretDown)
 const mapStateToProps = (state) => {
   return ({
-    loggedIn: state.loginReducer.loggedInStatus
+    loggedIn: state.loginReducer.loggedInStatus,
+    signup_success:state.loginReducer.signup_success
   })
 }
 
@@ -21,13 +22,23 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/dashboard" render={() => (this.props.loggedIn ? (
+            <Dashboard />):
+            (<Login />)
+          )} />
+          <Route path="/login" render={() => (this.props.loggedIn ? (
+            <Redirect to="/dashboard" />):
+            (<Login />)
+          )} />
           <Route exact path="/" render={() => (this.props.loggedIn ? (
             <Redirect to="/dashboard" />) :
             (<Login />)
           )} />
           <Route path="/spreadsheet/:id" component={SpreadSheet}/>
-          <Route path="/signup" component={Signup}/>
+          <Route path="/signup" render={() => (this.props.signup_success ? (
+            <Login  />) :
+            (<Signup />)
+          )} />
         </Switch>
       </div>
     );
