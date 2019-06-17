@@ -57,20 +57,28 @@ class Login extends Component {
         return (
             <div className="login-page ">
                 <div className="login-box col-sm-10 col-md-8 col-lg-6">
-                    <div className={`username-box ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} >
-                        <span className="col-1"><FontAwesomeIcon icon="user" /></span>
-                        <input className="col-11" id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>
+                    <div className="header-login">
+                        <div className="heading-tag">SIGN IN</div>
+                        <img src="/assets/login.jpg" alt="timeline-image"/>
                     </div>
-                    <div className={`password-box ${this.state.password_field_selected? 'password-active' : 'password-inactive'}`} >
-                    <span className="col-1"><FontAwesomeIcon icon="lock" /></span>
-                        <input className="col-11" id="password" type="password" onChange={this.onFieldChange} onClick={this.onPasswordFieldSelection} value={this.state.password} placeholder="Enter password" ></input>
+                    <div className="footer-login">
+                        <div className="username-box" >
+                            <label className="col-3">Username</label>
+                            <input className={`col-8 ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>
+                        </div>
+                        <div className="password-box" >
+                            <label className="col-3">Password</label>
+                            <input className={`col-8 ${this.state.password_field_selected? 'password-active' : 'password-inactive'}`} id="password" type="password" onChange={this.onFieldChange} onClick={this.onPasswordFieldSelection} value={this.state.password} placeholder="Enter password" ></input>
+                        </div>
+                        <div className="sign-up">
+                            <Link to="/signup">Sign Up</Link>
+                        </div>
+                        <div className={`login-button ${this.state.form_filled? 'login-active' : 'login-inactive'}`} onClick={this.loginAction}>
+                        Login 
+                        </div>
+                        
                     </div>
-                    <div className={`login-button ${this.state.form_filled? 'login-active' : 'login-inactive'}`} onClick={this.loginAction}>
-                       Login 
-                    </div>
-                    <div className="sign-up">
-                        <Link to="/signup">Sign Up</Link>
-                    </div>
+                   
                 </div>
             </div>
         )
