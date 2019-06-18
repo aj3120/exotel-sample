@@ -3,22 +3,86 @@
 .cell{
     border: none;
     outline: none;
+    background: transparent;
 }
 .column-heading{
     position:absolute;
-    border: 1px solid red; 
+    border: 1px solid #57b846; 
     background-color: white;
+    list-style-type: none;
+    font-size: 10px;
     width:10em;
+    padding:0px;
+    cursor: pointer;
 }
+.column-heading li{
+    border-bottom: 1px solid #57b846;
+    padding:10px
+}
+
 #heading{
     float:left;
 }
 .column-icon{
     float:right;
+    margin-right:2em;
 }
 .hide-menu{
     display:none; 
 }
 .visible-menu{
     display: block;
+}
+
+.download{
+    width:4em;
+    float: right;
+    margin-right:1em;
+}
+.download:hover{
+    width:4.2em;
+}
+
+.add-row{
+    float: left;
+    margin-left:1em;
+}
+.add-row input{
+    width: 3em;
+    padding-left:1em;
+    margin-left:1em;
+}
+.addicon,.saveicon{
+    margin-left:1em;
+    border:1px solid #57b846;
+    border-radius:2em;
+    width:4em;
+    color:white;
+    background-color: #57b846;
+    outline: none;
+}
+.addicon:hover,.saveicon:hover{
+    background-color: gray;
+    border:1px solid gray;
+}
+.saveicon{
+    margin-left: 5em;
+}
+.arrow-left svg{
+    margin:0.2em;
+}
+.logout-spreadsheet{
+    float:right;
+    border:1px solid #57b846;
+    border-radius:2em;
+    width:4.2em;
+    color:white;
+    background-color: #57b846;
+    outline: none;
+    user-select: none;
+    margin:1em;
+}
+.logout-spreadsheet:hover{
+    background-color: gray;
+    border:1px solid gray;
 }

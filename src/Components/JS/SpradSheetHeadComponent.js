@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import {selectFieldAction,addLeftColumnAction,addRightColumnAction,sortAtoZAction,sortZtoAAction} from '../../Redux/Actions/spreadsheetActions'
+import {selectFieldAction,addLeftColumnAction,addRightColumnAction,sortAtoZAction,sortZtoAAction,clearColumnAction} from '../../Redux/Actions/spreadsheetActions'
 const mapStateToProps = state => {
     return (
         {
@@ -15,14 +15,20 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        action: bindActionCreators({selectFieldAction,addLeftColumnAction,addRightColumnAction,sortAtoZAction,sortZtoAAction}, dispatch)
+        action: bindActionCreators({selectFieldAction,addLeftColumnAction,addRightColumnAction,sortAtoZAction,sortZtoAAction,clearColumnAction}, dispatch)
     };
 };
 
 class SpreadsheetHead extends Component {
    
     selectField = (field_selected) => {
-        this.props.action.selectFieldAction(field_selected)
+        if(this.props.field_selected===field_selected){
+            this.props.action.selectFieldAction(' ')
+        }
+        else{
+            this.props.action.selectFieldAction(field_selected)
+        }
+        
     }
 
     addColumnLeft = (e) => {
@@ -53,9 +59,9 @@ class SpreadsheetHead extends Component {
         let temp_header = [...this.props.headers]
         let new_head = String.fromCharCode((temp_header[temp_header.length - 1].label.charCodeAt()) + 1)
         temp_header.push({ label: new_head, key: new_head })
-        this.props.action.addLeftColumnAction(new_spread_data)
+        this.props.action.addLeftColumnAction({headers:temp_header,spread_data:new_spread_data})
     }
-
+    
     addColumnRight = (e) => {
         e.stopPropagation();
         let split_header_index = null
@@ -84,7 +90,17 @@ class SpreadsheetHead extends Component {
         let temp_header = [...this.props.headers]
         let new_head = String.fromCharCode((temp_header[temp_header.length - 1].label.charCodeAt()) + 1)
         temp_header.push({ label: new_head, key: new_head })
-        this.props.action.addRightColumnAction(new_spread_data)
+        console.log(temp_header)
+        this.props.action.addRightColumnAction({headers:temp_header,spread_data:new_spread_data})
+    }
+
+    clearColumns=(e)=>{
+        e.stopPropagation();
+        let spread_data_temp = [...this.props.spread_data]
+        spread_data_temp.forEach((item)=>{
+            item[this.props.field_selected]=''
+        })
+        this.props.action.clearColumnAction(spread_data_temp)
     }
 
     sortColumnAtoZ = (e) => {
@@ -137,6 +153,7 @@ class SpreadsheetHead extends Component {
                     <li onClick={this.addColumnRight}>Add a column Right</li>
                     <li onClick={this.sortColumnAtoZ}>Sort A-Z</li>
                     <li onClick={this.sortColumnZtoA}>Sort Z-A</li>
+                    <li onClick={this.clearColumns}>Clear column</li>
                 </ul>
             </span>
         </th>)

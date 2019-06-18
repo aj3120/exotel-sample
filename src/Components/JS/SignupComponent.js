@@ -64,11 +64,11 @@ class Signup extends Component {
              <div className="login-box col-sm-10 col-md-8 col-lg-6">
                  <div className="header-login">
                      <div className="heading-tag">CREATE AN ACCOUNT</div>
-                     <img src="/assets/login.jpg" alt="timeline-image"/>
+                     <img src="/assets/login.jpg" alt="timeline"/>
                  </div>
                  <div className="footer-login">
                      <div className={`error-message ${this.state.error_show?'':'error-message-hide'}`}>Please enter username and password with atleast 4 letters </div>
-                     <div className={`error-message ${this.props.signup_error?'':'error-message-hide'}`}>Invalid username or password</div>
+                     <div className={`error-message ${this.props.signup_error?'':'error-message-hide'}`}>Error in signing up. The user may be already existing</div>
                      <div className="username-box" >
                          <label className="col-3">Username</label>
                          <input className={`col-8 ${this.state.username_field_selected? 'username-active' : 'username-inactive'}`} id="username" type="text" onChange={this.onFieldChange} onClick={this.onUserFieldSelection} value={this.state.username} placeholder="Enter username"  autoComplete="off"></input>

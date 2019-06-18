@@ -77,3 +77,13 @@ export const addRowCountAction=(data)=>{
         }
     );
 }
+
+export const clearColumnAction=(data)=>{
+    return(
+        {
+            type:ActionTypes.CLEAR_COLUMN,
+            payload:data
+
+        }
+    );
+}

@@ -22,19 +22,21 @@ export default function(state=initial_state,action){
         case ActionTypes.SELECT_FIELD:
             return({...state,field_selected:action.payload}) 
         case ActionTypes.ADD_LEFT_COLUMN:
-            return({...state,field_selected:'',spread_data:action.payload})   
+            return({...state,field_selected:'',headers:action.payload.headers,spread_data:action.payload.spread_data})   
         case ActionTypes.ADD_RIGHT_COLUMN:
-                return({...state,field_selected:'',spread_data:action.payload})  
+            return({...state,field_selected:'',headers:action.payload.headers,spread_data:action.payload.spread_data})  
         case ActionTypes.SORT_ATOZ:
-                return({...state,field_selected:'',spread_data:action.payload}) 
+            return({...state,field_selected:'',spread_data:action.payload}) 
         case ActionTypes.SORT_ZTOA:
-                return({...state,field_selected:'',spread_data:action.payload}) 
+            return({...state,field_selected:'',spread_data:action.payload}) 
         case ActionTypes.CELL_CHANGE:
-                return({...state,spread_data:action.payload})    
+            return({...state,spread_data:action.payload})    
         case ActionTypes.ROWS_ADDED:
-                return ({...state,spread_data:action.payload})
+            return ({...state,spread_data:action.payload})
         case ActionTypes.ROW_COUNT_CHANGE:
-                return({...state,add_row_count:action.payload})                                                          
+            return({...state,add_row_count:action.payload})  
+        case ActionTypes.CLEAR_COLUMN:
+            return({...state,spread_data:action.payload})                        
         default:
             return state    
     }

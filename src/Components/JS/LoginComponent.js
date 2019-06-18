@@ -60,6 +60,12 @@ class Login extends Component {
     onPasswordFieldSelection=()=>{
         this.setState({username_field_selected:false,password_field_selected:true})
     }
+    componentDidMount(){
+        window.addEventListener('keydown',(event)=>{
+            if(event.key==='Enter')
+                this.loginAction()
+        })
+    }
 
     render() {
         return (
@@ -67,7 +73,7 @@ class Login extends Component {
                 <div className="login-box col-sm-10 col-md-8 col-lg-6">
                     <div className="header-login">
                         <div className="heading-tag">SIGN IN</div>
-                        <img src="/assets/login.jpg" alt="timeline-image"/>
+                        <img src="/assets/login.jpg" alt="timeline"/>
                     </div>
                     <div className="footer-login">
                         <div className={`error-message ${this.state.error_show?'':'error-message-hide'}`}>Please enter username and password with atleast 4 letters </div>

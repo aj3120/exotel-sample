@@ -7,9 +7,9 @@ import './App.css';
 import { connect } from 'react-redux';
 import { Route, Switch,Redirect } from 'react-router';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faLock, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faUser,faLock,faCaretDown)
+library.add(faArrowLeft,faCaretDown)
 const mapStateToProps = (state) => {
   return ({
     loggedIn: state.loginReducer.loggedInStatus,
@@ -34,7 +34,10 @@ class App extends Component {
             <Redirect to="/dashboard" />) :
             (<Login />)
           )} />
-          <Route path="/spreadsheet/:id" component={SpreadSheet}/>
+          <Route path="/spreadsheet/:id" render={() => (this.props.loggedIn ? (
+            <SpreadSheet />) :
+            (<Redirect to="/login" />)
+          )} />
           <Route path="/signup" render={() => (this.props.signup_success ? (
             <Login  />) :
             (<Signup />)

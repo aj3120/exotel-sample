@@ -35,7 +35,7 @@ export function* sagaLogout(){
 
 export  function* signupProcess(data){
   let contents=yield call(()=>axios.post(`http://poocha.herokuapp.com/users/register`,data.payload))
-  if(contents.data.status===true)
+  if(contents.data.status==="true")
     yield put({ type: ActionTypes.SIGNUP_SUCCESS, payload: contents.data})
   else
     yield put({ type: ActionTypes.SIGNUP_FAILED})
