@@ -9,7 +9,7 @@ import {logoutAction} from '../../Redux/Actions/logoutAction'
 import CardComponent from './CardComponent'
 const mapStateToProps = state => {
     return {
-
+        spreadsheet_array:state.loginReducer.spreadsheet_array
     };
 };
 const mapDispatchToProps = dispatch => {
@@ -38,8 +38,8 @@ class Content extends Component {
                     <CardDeck>
                     <Row>
                     {
-                        [1,2,3,4,5,6,7,8,9,10,11,12].map((item)=>
-                            <CardComponent key={item} item={item}/>
+                        this.props.spreadsheet_array.map((item)=>
+                            <CardComponent key={item._id} item={item._id}/>
                         )
                         
 

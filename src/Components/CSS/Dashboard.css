@@ -5,6 +5,7 @@
 }
 .dashboard{
     background-color: #ebeeef;
+    min-height: 100vh;
 }
 .main-section{
     width:80%;
@@ -43,6 +44,9 @@
     cursor: pointer;
     border-color:#57b846;
     background-color: #ebeeef;
+}
+.card img{
+    height: 50px;
 }
 .card-body {
     padding: 0px;

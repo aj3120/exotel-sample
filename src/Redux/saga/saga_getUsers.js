@@ -2,6 +2,7 @@ import { put, takeLatest,call} from 'redux-saga/effects'
 import { ActionTypes } from '../ActionTypes';
 import axios from 'axios'
 
+
 var config = {
     headers: {'Access-Control-Allow-Origin': '*'},
     crossdomain: true

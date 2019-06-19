@@ -7,22 +7,22 @@ import {logoutAction} from '../../Redux/Actions/logoutAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../CSS/SpreadSheet.css';
 import { CSVLink } from "react-csv";
-import {addRowsAction,addRowCountAction} from '../../Redux/Actions/spreadsheetActions'
+import {addRowsAction,addRowCountAction,getSheetDataAction} from '../../Redux/Actions/spreadsheetActions'
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-
 const mapStateToProps = state => {
     return (
         {
             spread_data:state.spreadsheetReducer.spread_data,
             headers:state.spreadsheetReducer.headers,
-            add_row_count:state.spreadsheetReducer.add_row_count
+            add_row_count:state.spreadsheetReducer.add_row_count,
+            sheet_id:state.router.location.pathname.split('/')[2]
         }
     )
 }
 const mapDispatchToProps = dispatch => {
     return {
-        action: bindActionCreators({addRowsAction,addRowCountAction,logoutAction}, dispatch)
+        action: bindActionCreators({addRowsAction,addRowCountAction,logoutAction,getSheetDataAction}, dispatch)
     };
 };
 class SpreadSheet extends Component {
@@ -53,6 +53,11 @@ class SpreadSheet extends Component {
     
     logout=()=>{
         this.props.action.logoutAction()
+    }
+
+    componentDidMount(){
+        console.log(this.props)
+        this.props.action.getSheetDataAction({id:this.props.sheet_id})
     }
     
     render() {

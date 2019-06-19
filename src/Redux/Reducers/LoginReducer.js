@@ -6,14 +6,15 @@ const initial_state={
     login_error:false,
     signup_success:false,
     signup_loader:false,
-    signup_error:false
+    signup_error:false,
+    spreadsheet_array:[]
 }
 export default function(state=initial_state,action){
     switch(action.type){
         case ActionTypes.LOGIN:
             return({...state,login_loader:true})
         case ActionTypes.LOGIN_SUCCESS:
-            return({...state,loggedInStatus:true,login_loader:false,login_error:false}) 
+            return({...state,loggedInStatus:true,login_loader:false,login_error:false,spreadsheet_array:action.payload.data}) 
         case ActionTypes.LOGIN_FAILED:
             return({login_loader:false,login_error:true})  
         case ActionTypes.LOGOUT:

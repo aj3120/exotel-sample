@@ -1,4 +1,15 @@
-import {ActionTypes} from '../ActionTypes'
+import {ActionTypes} from '../ActionTypes';
+
+export const getSheetDataAction=(data)=>{
+    return(
+        {
+            type:ActionTypes.GET_SHEETDATA,
+            payload:data
+
+        }
+    );
+}
+
 export const selectFieldAction=(data)=>{
     return(
         {
