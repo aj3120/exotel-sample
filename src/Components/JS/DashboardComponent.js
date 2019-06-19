@@ -9,7 +9,8 @@ import {logoutAction} from '../../Redux/Actions/logoutAction'
 import CardComponent from './CardComponent'
 const mapStateToProps = state => {
     return {
-        spreadsheet_array:state.loginReducer.spreadsheet_array
+        spreadsheet_array:state.loginReducer.spreadsheet_array,
+        user:state.loginReducer.username
     };
 };
 const mapDispatchToProps = dispatch => {
@@ -20,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 class Content extends Component {
 
     createSheet=()=>{
-        this.props.action.createNewSheetAction()
+        this.props.action.createNewSheetAction({user:this.props.user})
     }
 
     logout=()=>{
@@ -38,13 +39,13 @@ class Content extends Component {
                     <CardDeck>
                     <Row>
                     {
-                        this.props.spreadsheet_array.map((item)=>
-                            <CardComponent key={item._id} item={item._id}/>
+                        this.props.spreadsheet_array.map((item,index)=>
+                            <CardComponent key={item._id} item={item._id} label={index} />
                         )
                         
 
                     }
-                    <Col  onClick={this.createSheet} xs="6" sm="4" md="3" lg="2">
+                    <Col  onClick={this.createSheet}>
                             <Card>
                                 <CardImg top width="20%" src="/assets/add.png" alt="add" />
                                 <CardBody>

@@ -12,7 +12,7 @@ const initial_state={
 export default function(state=initial_state,action){
     switch(action.type){
         case ActionTypes.LOGIN:
-            return({...state,login_loader:true})
+            return({...state,login_loader:true,username:action.payload.username,password:action.payload.password})
         case ActionTypes.LOGIN_SUCCESS:
             return({...state,loggedInStatus:true,login_loader:false,login_error:false,spreadsheet_array:action.payload.data}) 
         case ActionTypes.LOGIN_FAILED:
@@ -26,7 +26,9 @@ export default function(state=initial_state,action){
         case ActionTypes.SIGNUP_SUCCESS:
             return {...state,signup_success:true,signup_loader:faGlasses,signup_error:false}          
         case ActionTypes.SIGNUP_FAILED:
-            return({signup_loader:false,signup_error:true})    
+            return({signup_loader:false,signup_error:true})  
+        case ActionTypes.SHEET_CREATION_SUCCESS:
+            return({...state,spreadsheet_array:[...state.spreadsheet_array,{_id:action.payload}]})        
         default:
             return state    
     }

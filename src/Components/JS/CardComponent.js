@@ -8,7 +8,7 @@ const CardComponent=function(props){
             <Card>
                 <CardImg top width="20%" src="/assets/sheets.png" alt="Card image cap" />
                 <CardBody>
-                    <CardTitle>Card title</CardTitle>
+                    <CardTitle>Card title {props.label+1}</CardTitle>
                 </CardBody>
             </Card>
             </Link>

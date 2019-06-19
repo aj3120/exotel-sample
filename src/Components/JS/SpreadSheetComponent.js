@@ -7,7 +7,7 @@ import {logoutAction} from '../../Redux/Actions/logoutAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../CSS/SpreadSheet.css';
 import { CSVLink } from "react-csv";
-import {addRowsAction,addRowCountAction,getSheetDataAction} from '../../Redux/Actions/spreadsheetActions'
+import {addRowsAction,addRowCountAction,getSheetDataAction,updateSheetDataAction} from '../../Redux/Actions/spreadsheetActions'
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 const mapStateToProps = state => {
@@ -16,13 +16,14 @@ const mapStateToProps = state => {
             spread_data:state.spreadsheetReducer.spread_data,
             headers:state.spreadsheetReducer.headers,
             add_row_count:state.spreadsheetReducer.add_row_count,
-            sheet_id:state.router.location.pathname.split('/')[2]
+            sheet_id:state.router.location.pathname.split('/')[2],
+            user:state.loginReducer.username
         }
     )
 }
 const mapDispatchToProps = dispatch => {
     return {
-        action: bindActionCreators({addRowsAction,addRowCountAction,logoutAction,getSheetDataAction}, dispatch)
+        action: bindActionCreators({addRowsAction,addRowCountAction,logoutAction,getSheetDataAction,updateSheetDataAction}, dispatch)
     };
 };
 class SpreadSheet extends Component {
@@ -54,10 +55,13 @@ class SpreadSheet extends Component {
     logout=()=>{
         this.props.action.logoutAction()
     }
+    updateSheet=()=>{
+        this.props.action.updateSheetDataAction({id:this.props.sheet_id,user:this.props.user,data:{spread_data:this.props.spread_data,headers:this.props.headers}})
+    }
 
     componentDidMount(){
         console.log(this.props)
-        this.props.action.getSheetDataAction({id:this.props.sheet_id})
+        this.props.action.getSheetDataAction({id:this.props.sheet_id,user:this.props.user})
     }
     
     render() {
@@ -76,7 +80,7 @@ class SpreadSheet extends Component {
                 <CSVLink data={this.props.spread_data} headers={this.props.headers}>
                     <img className="download" src="/assets/download.png" alt="download"/>
                 </CSVLink>
-                <button className="saveicon">Save</button>
+                <button className="saveicon" onClick={this.updateSheet}>Save</button>
                 <div className="add-row" >
                     <span>Add row</span>
                     <input type="text" value={this.props.add_row_count} onChange={this.addRowCountChange}></input>

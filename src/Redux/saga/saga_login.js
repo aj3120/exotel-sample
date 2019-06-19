@@ -1,6 +1,7 @@
 import { put, takeLatest,call} from 'redux-saga/effects'
 import { ActionTypes } from '../ActionTypes';
-import axios from 'axios'
+import axios from 'axios';
+import {history} from '../createStore'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
 
@@ -20,7 +21,7 @@ export function* sagaLogin(){
 
 export  function* logoutProcess(data){
   let contents=yield call(()=>axios.get(`http://poocha.herokuapp.com/logout`))
-  if(contents.data.status===true){
+  if(contents.data.status==="true"){
     yield put({ type: ActionTypes.LOGOUT_SUCCESS})
   }
    else
@@ -35,8 +36,10 @@ export function* sagaLogout(){
 
 export  function* signupProcess(data){
   let contents=yield call(()=>axios.post(`http://poocha.herokuapp.com/users/register`,data.payload))
-  if(contents.data.status===true)
+  if(contents.data.status==='true'){
     yield put({ type: ActionTypes.SIGNUP_SUCCESS, payload: contents.data})
+    history.push('/login')
+  }
   else
     yield put({ type: ActionTypes.SIGNUP_FAILED})
 

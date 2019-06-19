@@ -44,9 +44,11 @@
     cursor: pointer;
     border-color:#57b846;
     background-color: #ebeeef;
+    width: 100px;
 }
 .card img{
     height: 50px;
+    width:50px;
 }
 .card-body {
     padding: 0px;

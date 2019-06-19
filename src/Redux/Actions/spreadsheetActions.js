@@ -10,6 +10,16 @@ export const getSheetDataAction=(data)=>{
     );
 }
 
+export const updateSheetDataAction=(data)=>{
+    return(
+        {
+            type:ActionTypes.UPDATE_SHEETDATA,
+            payload:data
+
+        }
+    );
+}
+
 export const selectFieldAction=(data)=>{
     return(
         {
