@@ -2,7 +2,7 @@ import { put, takeLatest,call} from 'redux-saga/effects'
 import { ActionTypes } from '../ActionTypes';
 import axios from 'axios'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = true;
+axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
 
 export  function* loginProcess(data){
     let contents=yield call(()=>axios.post(`http://poocha.herokuapp.com/users/login`,data.payload))
